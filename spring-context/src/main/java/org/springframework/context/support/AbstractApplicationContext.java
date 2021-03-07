@@ -514,12 +514,36 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	}
 
 	@Override
+	/**
+	 * 该方法是spring容器初始化的核心方法。是spring 容器初始化的核心流程，是一个典型的父类模板设计模式的运用
+	 * 根据不同的上下文对象，会调用到不同的上下文对象字类方法中
+	 *
+	 * 核心上下文子类有
+	 * ClassPathXmlApplicationContext
+	 * FileSystemXmlApplicationContext
+	 * AnnotationConfigApplicationContext
+	 * EmbeddedWebApplicationContext(SpringBoot)
+	 */
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
+			//为spring的初始化做准备
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.
+			/**
+			 * 1：创建BeanFactory对象
+			 * 2：xml解析
+			 * 		1：对传统标签的解析： bean  import
+			 * 		2：自定义标签的解析: component-Scan
+			 * 			自定义标签的解析流程：
+			 * 				1：根据当前标签的头信息找到对应的nameSpaceUri
+			 * 				2: 加载Spring所在jar中的spring.handlers文件，并且建立映射关系
+			 * 				3：根据nameSpaceUri从映射关系里面找到对用的实现了NameSpaceHandler接口的类
+			 * 				4：调用类的init方法，init方法是注册了各种自定义标签的解析类
+			 * 			    5：根据nameSpaceUri	找到对应的解析类，然后调用paser方法完成标签解析
+			 * 3：把解析出来的xml封装成BeanDefinition对象
+			 */
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
