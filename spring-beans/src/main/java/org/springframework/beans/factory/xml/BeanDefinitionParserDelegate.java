@@ -512,17 +512,25 @@ public class BeanDefinitionParserDelegate {
 		}
 
 		try {
+			//创建GenericBeanDefinition对象
 			AbstractBeanDefinition bd = createBeanDefinition(className, parent);
 
+			//解析bean标签的属性，并把解析出来的属性设置到BeanDefinition对象中
 			parseBeanDefinitionAttributes(ele, beanName, containingBean, bd);
 			bd.setDescription(DomUtils.getChildElementValueByTagName(ele, DESCRIPTION_ELEMENT));
 
+			//解析bean中的meta标签
 			parseMetaElements(ele, bd);
+			//解析bean中的lookup-method标签，可以不看
 			parseLookupOverrideSubElements(ele, bd.getMethodOverrides());
+			//解析bean中的replaced-method标签，可以不看
 			parseReplacedMethodSubElements(ele, bd.getMethodOverrides());
 
+			//解析bean中的constructor-arg 标签 可以不看
 			parseConstructorArgElements(ele, bd);
+			//解析bean中的property标签 可以不看
 			parsePropertyElements(ele, bd);
+			//可以不看
 			parseQualifierElements(ele, bd);
 
 			bd.setResource(this.readerContext.getResource());

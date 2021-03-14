@@ -399,6 +399,7 @@ class ConstructorResolver {
 		Class<?> factoryClass;
 		boolean isStatic;
 
+		//获取factoryBean name
 		String factoryBeanName = mbd.getFactoryBeanName();
 		if (factoryBeanName != null) {
 			if (factoryBeanName.equals(beanName)) {
@@ -410,6 +411,7 @@ class ConstructorResolver {
 				throw new ImplicitlyAppearedSingletonException();
 			}
 			factoryClass = factoryBean.getClass();
+			//factoryMethod要为非静态方法
 			isStatic = false;
 		}
 		else {
@@ -420,6 +422,7 @@ class ConstructorResolver {
 			}
 			factoryBean = null;
 			factoryClass = mbd.getBeanClass();
+			//factoryMethod需要为静态方法
 			isStatic = true;
 		}
 
