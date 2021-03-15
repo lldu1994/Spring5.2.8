@@ -568,6 +568,11 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		synchronized (mbd.postProcessingLock) {
 			if (!mbd.postProcessed) {
 				try {
+
+					//CommonAnnotationBeanPostProcessor  支持了@PostConstruct,@PreDestroy,@Resource 注解
+					//AutowiredAnnotationBeanPostProcessor 支持 @Autowired,@Value注解
+					//BeanPostProcessor 接口的典型运用，这里要理解这个接口
+					//对类中注解的装配过程  收集注解
 					applyMergedBeanDefinitionPostProcessors(mbd, beanType, beanName);
 				}
 				catch (Throwable ex) {
