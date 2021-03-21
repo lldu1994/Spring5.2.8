@@ -1173,12 +1173,12 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 	/**
 	 *
 	 * 1、实例化factoryMenthod方法对应实例
-	 * 		情况1：<bean>标签里面配置了factory-method属性</bean>
+	 * 		情况1：<bean>标签里面配置了factory-method属性</bean>。
 	 * 			有两种调用形式，要么是另一个类中的非静态方法调用；要么就是在beanClass这个类中的静态方法调用
 	 * 		情况2：方法上面家上@bean注解
 	 * 2、实例化带有@Autowired注解的有参构造函数
 	 * 3、实例化没有@Autowired的有参构造函数
-	 * 4、实例化无参构造函数
+	 * 4、实例化无参构造函数。
 	 */
 	protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) {
 		// Make sure bean class is actually resolved at this point.
