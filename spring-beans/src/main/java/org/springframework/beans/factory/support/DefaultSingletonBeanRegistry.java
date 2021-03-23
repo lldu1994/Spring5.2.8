@@ -263,6 +263,7 @@ public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements
 					afterSingletonCreation(beanName);
 				}
 				if (newSingleton) {
+					//添加到一级缓存里面
 					addSingleton(beanName, singletonObject);
 				}
 			}

@@ -556,6 +556,13 @@ public abstract class AbstractAutowireCapableBeanFactory extends AbstractBeanFac
 		}
 		if (instanceWrapper == null) {
 			//创建实例，着重看
+
+			/**
+			 * 1、实例化factoryMethod 方法对应的实例
+			 * 2、实例化带有@Autowired注解的有参构造函数
+			 * 3、实例化没有@Autowired的有惨构造函数
+			 * 4、实例化无参构造函数
+			 */
 			instanceWrapper = createBeanInstance(beanName, mbd, args);
 		}
 		Object bean = instanceWrapper.getWrappedInstance();
