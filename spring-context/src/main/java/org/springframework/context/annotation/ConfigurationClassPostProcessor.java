@@ -86,9 +86,9 @@ import org.springframework.util.ClassUtils;
 public class ConfigurationClassPostProcessor implements BeanDefinitionRegistryPostProcessor,
 		PriorityOrdered, ResourceLoaderAware, BeanClassLoaderAware, EnvironmentAware {
 
-	/**
-	 * A {@code BeanNameGenerator} using fully qualified class names as default bean names.
-	 * <p>This default for configuration-level import purposes may be overridden through
+	/**fault bean names.
+	 * <p>This default for configuration-level import purposes may be ov
+	 * 	 * A {@code BeanNameGenerator} using fully qualified class names as deerridden through
 	 * {@link #setBeanNameGenerator}. Note that the default for component scanning purposes
 	 * is a plain {@link AnnotationBeanNameGenerator#INSTANCE}, unless overridden through
 	 * {@link #setBeanNameGenerator} with a unified user-level bean name generator.
